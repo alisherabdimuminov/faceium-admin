@@ -51,9 +51,9 @@ const addBranch = async () => {
                         <Label>Nomi</Label>
                         <Input v-model="workingTime.name" />
                         <Label>Boshlanishi</Label>
-                        <Input v-mask="'##:##:00'" v-model="workingTime.start" />
+                        <Input v-model="workingTime.start" />
                         <Label>Tugashi</Label>
-                        <Input v-mask="'##:##:00'" v-model="workingTime.end" />
+                        <Input v-model="workingTime.end" />
                     </div>
                     <DialogFooter>
                         <DialogClose as-child>

@@ -138,7 +138,7 @@ const addUser = async () => {
                     <CardDescription>3x4 o'lchamli</CardDescription>
                 </CardHeader>
                 <CardContent class="flex flex-col items-center gap-2">
-                    <img class="w-40 h-44 rounded-md object-cover" src="https://api.fc.uzfi.uz/media/images/employees/image_BHFn9C7.png" alt="">
+                    <img class="w-40 h-44 rounded-md object-cover" alt="">
                     <Input id="image" type="file" />
                 </CardContent>
             </Card>

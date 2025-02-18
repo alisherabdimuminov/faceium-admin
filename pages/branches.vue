@@ -59,7 +59,7 @@ const addBranch = async () => {
                 <TableHeader>
                     <TableRow>
                         <TableHead>ID</TableHead>
-                        <TableHead>Filial</TableHead>
+                        <TableHead>Filial nomi</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>

@@ -42,6 +42,7 @@ const loginHandler = async () => {
         if (route.query) {
             navigateTo(route.query);
         } else {
+            console.log("redirect");
             navigateTo("/");
         }
     }

@@ -34,11 +34,11 @@ const addBranch = async () => {
         <div class="flex justify-end">
             <Dialog>
                 <DialogTrigger as-child>
-                    <Button size="sm">Filial qo'shish</Button>
+                    <Button size="sm">Bo'lim qo'shish</Button>
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Yangi filial qo'shish</DialogTitle>
+                        <DialogTitle>Yangi bo'lim qo'shish</DialogTitle>
                         <DialogDescription></DialogDescription>
                     </DialogHeader>
                     <div>

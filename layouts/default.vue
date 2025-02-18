@@ -202,7 +202,7 @@ const { departments } = storeToRefs(departmentsStore);
                     </SidebarMenu>
                 </SidebarGroup>
             </SidebarContent>
-            <SidebarFooter>
+            <SidebarFooter v-if="user">
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <DropdownMenu>
@@ -271,7 +271,7 @@ const { departments } = storeToRefs(departmentsStore);
                         <BreadcrumbList>
                             <BreadcrumbItem class="hidden md:block">
                                 <BreadcrumbLink href="#">
-                                    Building Your Application
+                                    {{ user ? user.org : "Admin" }}
                                 </BreadcrumbLink>
                             </BreadcrumbItem>
                             <BreadcrumbSeparator class="hidden md:block" />

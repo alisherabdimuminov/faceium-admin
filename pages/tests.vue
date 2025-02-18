@@ -54,9 +54,9 @@ const { users } = storeToRefs(usersStore);
                         <Label>To'plam</Label>
                         <Input />
                         <Label>Savollar soni</Label>
-                        <Input v-mask="'###'" />
+                        <Input />
                         <Label>O'tish bali</Label>
-                        <Input v-mask="'###'" />
+                        <Input />
                     </div>
                     <DialogFooter>
                         <DialogClose><Button>Yopish</Button></DialogClose>
