@@ -108,7 +108,7 @@ const addUser = async () => {
                         </div>
                         <div class="w-full">
                             <Label>Tug'ilgan sanasi</Label>
-                            <Input v-mask="'####-##-##'" v-model="employee.birth_date" />
+                            <Input v-model="employee.birth_date" />
                         </div>
                         <div class="w-full">
                             <Label>ID</Label>
