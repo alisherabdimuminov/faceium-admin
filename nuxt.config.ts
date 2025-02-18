@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             // api: "https://faceium.uz/api/v1/",
+            api: "https://faceium.uz/api/v1/",
             base: "https://faceium.uz",
             secretKey: ""
         }
