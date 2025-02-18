@@ -16,8 +16,8 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         public: {
-            api: "http://localhost:8000/api/v1/",
-            base: "http://localhost:8000",
+            // api: "https://faceium.uz/api/v1/",
+            base: "https://faceium.uz",
             secretKey: ""
         }
     },
