@@ -1,7 +1,11 @@
 <script setup lang="ts">
 
 definePageMeta({
-    middleware: ["is-auth", "get-branches", "get-departments", "get-users", "get-working-times"],
+    title: "Bosh sahifa",
+    middleware: ["is-auth", "get-branches", "get-departments", "get-users", "get-working-times",],
+});
+useSeoMeta({
+    title: "KPI - Bosh sahifa",
 });
 
 

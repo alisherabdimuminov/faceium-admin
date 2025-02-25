@@ -1,6 +1,7 @@
 import type { IUser } from "~/types";
 
 export default function useAuth() {
+    const router = useRouter();
     const { encode, decode, jsonify } = useSecrets();
     const userCookie = useCookie<string>("user", {
         watch: "shallow",
@@ -19,14 +20,17 @@ export default function useAuth() {
 
     const logout = () => {
         userCookie.value = "";
-        // setTimeout(() => {
-        //     location.reload();
-        // }, 1000);
+        router.push({ name: "login" });
+    }
+
+    const changeUser = (data: string) => {
+        userCookie.value = data;
     }
 
     return {
         user,
         login,
         logout,
+        changeUser,
     }
 }

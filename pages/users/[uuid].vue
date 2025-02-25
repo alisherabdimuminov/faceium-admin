@@ -6,7 +6,11 @@ import type { IEmployee, IResponse } from '~/types';
 
 definePageMeta({
     title: "Xodim qo'shish",
-    middleware: ["is-auth", "get-users", "get-branches", "get-departments", "get-working-times",]
+    middleware: ["is-auth", "is-admin", "get-users", "get-branches", "get-departments", "get-working-times",]
+});
+
+useSeoMeta({
+    title: "KPI - Xodimni tahshirash",
 });
 
 const route = useRoute();
@@ -31,9 +35,8 @@ const editUser = async () => {
     let form = new FormData();
     let image = document.getElementById("image") as HTMLInputElement;
 
-    form.append("first_name", employee.value.first_name);
-    form.append("last_name", employee.value.last_name);
-    form.append("middle_name", employee.value.middle_name);
+    form.append("full_name", employee.value.full_name);
+    form.append("role", employee.value.role);
     form.append("gender", employee.value.gender);
     form.append("birth_date", employee.value.birth_date);
     form.append("username", employee.value.username);
@@ -104,16 +107,8 @@ onMounted(() => {
                 <CardContent>
                     <div class="flex flex-col md:flex-row gap-2">
                         <div class="w-full">
-                            <Label>Familiya</Label>
-                            <Input v-model="employee.first_name" />
-                        </div>
-                        <div class="w-full">
-                            <Label>Ism</Label>
-                            <Input v-model="employee.last_name" />
-                        </div>
-                        <div class="w-full">
-                            <Label>Sharif</Label>
-                            <Input v-model="employee.middle_name" />
+                            <Label>Familiya Ism Sharifi</Label>
+                            <Input v-model="employee.full_name" />
                         </div>
                     </div>
                     <div class="flex flex-col md:flex-row gap-2">
@@ -198,6 +193,20 @@ onMounted(() => {
                     <div>
                         <Label>Lavozim</Label>
                         <Input v-model="employee.position" />
+                    </div>
+                    <div>
+                        <Label>Role</Label>
+                        <Select v-model="employee.role" default-value="employee">
+                            <SelectTrigger>
+                                <SelectValue placeholder="Roleni tanlang" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="admin">Admin</SelectItem>
+                                <SelectItem value="staff">Mutaxasis kadr</SelectItem>
+                                <SelectItem value="analysis">Mutaxasis axborot tahlil</SelectItem>
+                                <SelectItem value="employee">Xodim</SelectItem>
+                            </SelectContent>
+                        </Select>
                     </div>
                 </div>
             </CardContent>

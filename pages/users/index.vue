@@ -5,11 +5,11 @@ import { LucideArrowDown, LucideArrowUp, LucideFilter } from 'lucide-vue-next';
 
 definePageMeta({
     title: "Xodimlar",
-    middleware: ["is-auth", "get-users", "get-branches", "get-departments"],
+    middleware: ["is-auth", "is-admin", "get-users", "get-branches", "get-departments"],
 });
 
-useHead({
-    title: "Xodimlar",
+useSeoMeta({
+    title: "KPI - Xodimlar",
 });
 
 
@@ -28,8 +28,7 @@ const department = ref("");
 
 const searchedUsers = computed(() => {
     return users.value.filter(user => 
-        user.first_name ? user.first_name.toLowerCase().includes(search.value.toLowerCase()) : false ||
-        user.last_name ? user.last_name.toLowerCase().includes(search.value.toLowerCase()) : false
+        user.full_name ? user.full_name.toLowerCase().includes(search.value.toLowerCase()) : false
     )
 });
 
@@ -113,7 +112,7 @@ const filteredByDepartmentUsers = computed(() => {
                                     <img v-if="iuser.image" class="w-10 h-10 rounded-full" :src="api(iuser.image, 'base')" alt="">
                                 </div>
                                 <div>
-                                    <p>{{ iuser.first_name }} {{ iuser.last_name }}</p>
+                                    <p>{{ iuser.full_name }}</p>
                                     <p class="text-xs text-muted-foreground">{{ iuser.username }}</p>
                                 </div>
                             </div>

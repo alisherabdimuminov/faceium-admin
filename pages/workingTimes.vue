@@ -5,7 +5,11 @@ import { LucideClockArrowDown, LucideClockArrowUp } from 'lucide-vue-next';
 
 definePageMeta({
     title: "Ish vaqtlari",
-    middleware: ["is-auth", "get-working-times", ],
+    middleware: ["is-auth", "is-admin", "get-working-times", ],
+});
+
+useSeoMeta({
+    title: "KPI - Ish vaqtlari",
 });
 
 

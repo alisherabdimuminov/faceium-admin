@@ -3,7 +3,10 @@
 
 definePageMeta({
     title: "Filiallar",
-    middleware: ["is-auth", "get-branches", ],
+    middleware: ["is-auth", "is-admin", "get-branches", ],
+});
+useSeoMeta({
+    title: "KPI - Filiallar",
 });
 
 

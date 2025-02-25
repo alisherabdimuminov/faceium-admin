@@ -16,10 +16,22 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         public: {
+            // Development
+            api: "http://localhost:8000/api/v1/",
+            base: "http://localhost:8000",
+
+            // Production
             // api: "https://faceium.uz/api/v1/",
-            api: "https://faceium.uz/api/v1/",
-            base: "https://faceium.uz",
+            // base: "https://faceium.uz",
             secretKey: ""
         }
     },
+
+    app: {
+        head: {
+            link: [
+                { rel: 'icon', type: 'image/x-icon', href: '/favicon/favicon.ico' },
+            ]
+        }
+    }
 })

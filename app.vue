@@ -4,14 +4,6 @@ import { Toaster as Sonner } from './components/ui/sonner';
 
 
 const { user } = useAuth();
-
-
-watch(user, () => {
-    if (user.value === null) {
-        navigateTo({ name: "login" });
-    }
-});
-
 </script>
 
 <template>

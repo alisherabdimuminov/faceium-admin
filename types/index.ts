@@ -1,11 +1,9 @@
 export interface IUser {
     username: string
-    first_name: string
-    last_name: string
-    org: string
+    full_name: string
+    role: "admin" | "staff" | "analysis" | "employee"
     department: string
     position: string
-    role: "admin" | "head"
     token: string
 }
 
@@ -37,9 +35,8 @@ export interface IEmployee {
     id: string
     uuid: string
     username: string
-    first_name: string
-    last_name: string
-    middle_name: string
+    full_name: string
+    role: "admin" | "staff" | "analysis" | "employee"
     branch: IBranch
     department: IDepartment
     position: string
@@ -56,8 +53,7 @@ export interface IEmployee {
 
 export interface IReports {
     username: string
-    first_name: string
-    last_name: string
+    full_name: string
     branch: IBranch
     department: IDepartment
     input_status: "created" | "arrived" | "didnotcome" | "late" | "failed" | "crash"
@@ -70,8 +66,7 @@ export interface IReports {
 
 export interface IReport {
     [date: string]: {
-        first_name: string
-        last_name: string
+        full_name: string
         input_status: "created" | "arrived" | "didnotcome" | "late" | "failed" | "crash" | "rest"
         input_time: string | null
     }[]
@@ -103,5 +98,25 @@ export interface ITest {
     start: string
     end: string
     duration: number
-    status: "not_started" | "started" | "ended" | "failed" | "passed"
+    status: "created" | "started" | "ended" | "failed" | "passed"
+}
+
+
+export interface ITask {
+    id: number
+    name: string
+    user: IEmployee
+    file: string
+    submit: string
+    status: "created" | "progress" | "approved" | "rejected" | "notsubmitted"
+    created: string
+}
+
+
+export interface ISubmit {
+    task: string
+    user: string
+    file: string
+    created: string
+    status: "created" | "progress" | "approved" | "rejected"
 }

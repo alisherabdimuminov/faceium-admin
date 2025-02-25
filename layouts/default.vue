@@ -9,14 +9,12 @@ import {
   LucideFlaskConical,
   LucideHome,
   LucideLayoutDashboard,
-  LucideLayoutGrid,
   LucideListChecks,
   LucideMonitor,
   LucideMoon,
   LucideSplit,
   LucideSun,
   LucideUsers,
-  Sparkles,
 } from 'lucide-vue-next'
 import path from '~/utils/path';
 
@@ -34,49 +32,13 @@ const { departments } = storeToRefs(departmentsStore);
 </script>
 
 <template>
-    <SidebarProvider>
+    <SidebarProvider v-if="user">
         <Sidebar collapsible="icon">
             <SidebarHeader>
-                <SidebarMenu>
-                    <SidebarMenuItem>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger as-child>
-                                <SidebarMenuButton
-                                    size="lg"
-                                    class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-                                >
-                                    <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                                        <LucideLayoutGrid />
-                                    </div>
-                                    <div class="grid flex-1 text-left text-sm leading-tight">
-                                        <span class="truncate font-semibold">{{ user.org }}</span>
-                                        <span class="truncate text-xs">Premium</span>
-                                    </div>
-                                    <ChevronsUpDown class="ml-auto" />
-                                </SidebarMenuButton>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent
-                                class="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-                                align="start"
-                                side="bottom"
-                                :side-offset="4"
-                            >
-                                <DropdownMenuLabel class="text-xs text-muted-foreground">
-                                Tashkilotlar
-                                </DropdownMenuLabel>
-                                <DropdownMenuItem
-                                    class="gap-2 p-2"
-                                    >
-                                    <div class="flex size-6 items-center justify-center rounded-sm border w-10">
-                                        <LucideLayoutGrid :size="15" />
-                                    </div>
-                                    <p class="truncate">{{ user.org }}</p>
-                                    <DropdownMenuShortcut>⌘{{ 2 }}</DropdownMenuShortcut>
-                                </DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                    </SidebarMenuItem>
-                </SidebarMenu>
+                <div class="flex items-center gap-1">
+                    <img class="h-10 w-8" src="/images/logo.svg" />
+                    <p class="group-data-[collapsible=icon]:hidden">Ekologik Eskpertiza Markazi</p>
+                </div>
             </SidebarHeader>
             <SidebarContent>
                 <SidebarGroup>
@@ -99,14 +61,14 @@ const { departments } = storeToRefs(departmentsStore);
                                     <SidebarMenuSub>
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton as-child>
-                                                <NuxtLink :class="{ 'bg-accent': $route.name === 'index' }" :to="{ name: 'index' }">
+                                                <NuxtLink :class="{ 'bg-accent': $route.name === 'index' }" :to="{ name: user.role !== 'employee' ? 'index' : 'main' }">
                                                     <LucideHome />
                                                     <span>Bosh sahifa</span>
                                                 </NuxtLink>
                                             </SidebarMenuSubButton>
                                         </SidebarMenuSubItem>
                                     </SidebarMenuSub>
-                                    <SidebarMenuSub>
+                                    <SidebarMenuSub v-if="user.role === 'admin'">
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton as-child>
                                                 <NuxtLink :class="{ 'bg-accent': $route.name?.toString().includes('users') }" :to="{ name: 'users' }">
@@ -116,7 +78,7 @@ const { departments } = storeToRefs(departmentsStore);
                                             </SidebarMenuSubButton>
                                         </SidebarMenuSubItem>
                                     </SidebarMenuSub>
-                                    <SidebarMenuSub>
+                                    <SidebarMenuSub v-if="user.role === 'admin'">
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton as-child>
                                                 <NuxtLink :class="{ 'bg-accent': $route.name === 'branches' }" :to="{ name: 'branches' }">
@@ -126,7 +88,7 @@ const { departments } = storeToRefs(departmentsStore);
                                             </SidebarMenuSubButton>
                                         </SidebarMenuSubItem>
                                     </SidebarMenuSub>
-                                    <SidebarMenuSub>
+                                    <SidebarMenuSub v-if="user.role === 'admin'">
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton as-child>
                                                 <NuxtLink :class="{ 'bg-accent': $route.name === 'departments' }" :to="{ name: 'departments' }">
@@ -136,7 +98,7 @@ const { departments } = storeToRefs(departmentsStore);
                                             </SidebarMenuSubButton>
                                         </SidebarMenuSubItem>
                                     </SidebarMenuSub>
-                                    <SidebarMenuSub>
+                                    <SidebarMenuSub v-if="user.role === 'admin'">
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton as-child>
                                                 <NuxtLink :class="{ 'bg-accent': $route.name === 'workingTimes' }" :to="{ name: 'workingTimes' }">
@@ -146,7 +108,7 @@ const { departments } = storeToRefs(departmentsStore);
                                             </SidebarMenuSubButton>
                                         </SidebarMenuSubItem>
                                     </SidebarMenuSub>
-                                    <SidebarMenuSub>
+                                    <SidebarMenuSub v-if="user.role === 'admin' || user.role === 'staff'">
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton as-child>
                                                 <NuxtLink :class="{ 'bg-accent': $route.name === 'reports' }" :to="{ name: 'reports' }">
@@ -156,7 +118,7 @@ const { departments } = storeToRefs(departmentsStore);
                                             </SidebarMenuSubButton>
                                         </SidebarMenuSubItem>
                                     </SidebarMenuSub>
-                                    <SidebarMenuSub>
+                                    <SidebarMenuSub v-if="user.role === 'admin'">
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton as-child>
                                                 <NuxtLink :class="{ 'bg-accent': $route.name === 'tests' }" :to="{ name: 'tests' }">
@@ -166,13 +128,23 @@ const { departments } = storeToRefs(departmentsStore);
                                             </SidebarMenuSubButton>
                                         </SidebarMenuSubItem>
                                     </SidebarMenuSub>
+                                    <SidebarMenuSub v-if="user.role !== 'staff'">
+                                        <SidebarMenuSubItem>
+                                            <SidebarMenuSubButton as-child>
+                                                <NuxtLink :class="{ 'bg-accent': $route.name === 'tasks' }" :to="{ name: user.role !== 'employee' ? 'tasks' : 'main-tasks' }">
+                                                    <LucideListChecks />
+                                                    <span>Vazifalar</span>
+                                                </NuxtLink>
+                                            </SidebarMenuSubButton>
+                                        </SidebarMenuSubItem>
+                                    </SidebarMenuSub>
                                 </CollapsibleContent>
                             </SidebarMenuItem>
                         </Collapsible>
                     </SidebarMenu>
                 </SidebarGroup>
-                <SidebarGroup class="group-data-[collapsible=icon]:hidden">
-                <SidebarGroupLabel>Faceium hisobotlar</SidebarGroupLabel>
+                <SidebarGroup v-if="user.role === 'admin' || user.role === 'staff'" class="group-data-[collapsible=icon]:hidden">
+                <SidebarGroupLabel>Hisobotlar</SidebarGroupLabel>
                     <SidebarMenu>
                         <SidebarMenuItem v-for="branch in branches">
                             <Collapsible class="group/collapsible">
@@ -202,7 +174,7 @@ const { departments } = storeToRefs(departmentsStore);
                     </SidebarMenu>
                 </SidebarGroup>
             </SidebarContent>
-            <SidebarFooter v-if="user">
+            <SidebarFooter>
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <DropdownMenu>
@@ -217,8 +189,8 @@ const { departments } = storeToRefs(departmentsStore);
                                         </AvatarFallback>
                                     </Avatar>
                                     <div class="grid flex-1 text-left text-sm leading-tight">
-                                        <span class="truncate font-semibold">{{ user.username }}</span>
-                                        <span class="truncate text-xs">{{ user.first_name }} {{ user.last_name }}</span>
+                                        <span class="truncate font-semibold">{{ user.full_name }}</span>
+                                        <span class="truncate text-xs">{{ user.username }}</span>
                                     </div>
                                     <ChevronsUpDown class="ml-auto size-4" />
                                 </SidebarMenuButton>
@@ -232,24 +204,14 @@ const { departments } = storeToRefs(departmentsStore);
                                         </AvatarFallback>
                                     </Avatar>
                                     <div class="grid flex-1 text-left text-sm leading-tight">
-                                        <span class="truncate font-semibold">{{ user.username }}</span>
-                                        <span class="truncate text-xs">{{ user.first_name }} {{ user.last_name }}</span>
+                                        <span class="truncate font-semibold">{{ user.full_name }}</span>
+                                        <span v-if="user.role === 'admin'" class="truncate text-xs font-bold text-green-500">Admin</span>
+                                        <span v-else-if="user.role === 'analysis'" class="truncate text-xs font-bold text-cyan-500">Mutaxasis axborot tahlil</span>
+                                        <span v-else-if="user.role === 'employee'" class="truncate text-xs font-bold text-red-500">Xodim</span>
+                                        <span v-else-if="user.role === 'staff'" class="truncate text-xs font-bold text-blue-500">Mutaxasis kadr</span>
                                     </div>
                                 </div>
                                 </DropdownMenuLabel>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuGroup>
-                                    <DropdownMenuItem>
-                                        <Sparkles />
-                                        <div class="w-full flex flex-col gap-2">
-                                            <div class="flex items-center justify-between">
-                                                <p>Xodimlar</p> 
-                                                <p>4/10</p>   
-                                            </div>
-                                            <Progress :model-value="30" />
-                                        </div>
-                                    </DropdownMenuItem>
-                                </DropdownMenuGroup>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem @click="logout">
                                     <LogOut />
@@ -270,9 +232,7 @@ const { departments } = storeToRefs(departmentsStore);
                     <Breadcrumb>
                         <BreadcrumbList>
                             <BreadcrumbItem class="hidden md:block">
-                                <BreadcrumbLink href="#">
-                                    {{ user ? user.org : "Admin" }}
-                                </BreadcrumbLink>
+                                Ekologik Eskpertiza Markazi
                             </BreadcrumbItem>
                             <BreadcrumbSeparator class="hidden md:block" />
                             <BreadcrumbItem>

@@ -6,7 +6,11 @@ import type { IReports, IResponse } from '~/types';
 
 definePageMeta({
     title: "Hisobotlar",
-    middleware: ["is-auth", "get-branches", "get-departments"],
+    middleware: ["is-auth", "is-admin-staff", "get-branches", "get-departments"],
+});
+
+useSeoMeta({
+    title: "KPI - Hisobotlar",
 });
 
 
@@ -143,7 +147,7 @@ onMounted(() => {
                 <TableBody>
                     <TableRow v-for="report, index in filterByDepartment">
                         <TableCell>{{ index+1 }}</TableCell>
-                        <TableCell>{{ report.first_name }} {{ report.last_name }}</TableCell>
+                        <TableCell>{{ report.full_name }}</TableCell>
                         <TableCell>{{ report.department ? report.department.name : "Kiritilmagan" }}</TableCell>
                         <TableCell class="border-l text-center">
                             <span v-if="report.input_status === 'arrived'" class="text-green-500  rounded-md">Kelgan</span>

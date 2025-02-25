@@ -3,7 +3,10 @@
 
 definePageMeta({
     title: "Filiallar",
-    middleware: ["is-auth", "get-departments", ],
+    middleware: ["is-auth", "is-admin", "get-departments", ],
+});
+useSeoMeta({
+    title: "KPI - Bo'limlar",
 });
 
 
