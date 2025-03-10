@@ -21,6 +21,7 @@ const route = useRoute();
 
 const { login } = useAuth();
 const { encode, decode } = useSecrets();
+const { user } = useAuth();
 
 const username = ref("");
 const password = ref("");
@@ -48,7 +49,6 @@ const loginHandler = async () => {
         if (route.query.next) {
             navigateTo(route.query.next.toString());
         } else {
-            console.log("redirect");
             navigateTo("/");
         }
     }

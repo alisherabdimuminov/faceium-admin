@@ -103,12 +103,14 @@ const addTask = async () => {
             </Dialog>
         </div>
         <div class="border rounded-md overflow-auto">
-            <Table>
+            <Table class="whitespace-nowrap">
                 <TableHeader>
                     <TableRow>
-                        <TableHead>ID</TableHead>
                         <TableHead>Xodim</TableHead>
-                        <TableHead>Vazifa</TableHead>
+                        <TableHead>Hujjat raqami</TableHead>
+                        <TableHead>Chiquvchi raqami</TableHead>
+                        <TableHead>Kiruvchi sana</TableHead>
+                        <TableHead>Chiquvchi sana</TableHead>
                         <TableHead>Holati</TableHead>
                         <TableHead>Fayl</TableHead>
                         <TableHead class="whitespace-nowrap">Yuborilgan fayl</TableHead>
@@ -116,17 +118,13 @@ const addTask = async () => {
                 </TableHeader>
                 <TableBody>
                     <TableRow v-for="task in tasks" :key="task.id">
-                        <TableCell>{{ task.id }}</TableCell>
                         <TableCell class="whitespace-nowrap">
-                            <div class="flex items-center gap-1">
-                                <img class="w-6 h-6 rounded-full" v-if="task.user.image" :src="$config.public.base + task.user.image" :alt="task.user.uuid">
-                                <div class="flex flex-col">
-                                    <span>{{ task.user.full_name }}</span>
-                                    <span class="text-xs text-muted-foreground">{{ task.user.role }}</span>
-                                </div>
-                            </div>
+                            <span>{{ task.user.full_name }}</span>
                         </TableCell>
-                        <TableCell>{{ task.name }}</TableCell>
+                        <TableCell>{{ task.number }}</TableCell>
+                        <TableCell>{{ task.output_number }}</TableCell>
+                        <TableCell>{{ task.entered }}</TableCell>
+                        <TableCell>{{ task.exited }}</TableCell>
                         <TableCell>
                             <span class="border rounded font-bold p-1 text-green-500 border-green-500 bg-green-500/10" v-if="task.status === 'approved'">Qabul qilingan</span>
                             <span class="border rounded font-bold p-1 text-blue-500 border-blue-500 bg-blue-500/10" v-else-if="task.status === 'created'">Topshirilgan</span>
@@ -135,9 +133,7 @@ const addTask = async () => {
                             <span class="border rounded font-bold p-1 text-red-500 border-red-500 bg-red-500/10" v-else-if="task.status === 'rejected'">Rad etilgan</span>
                         </TableCell>
                         <TableCell>
-                            <a :href="$config.public.base + task.file" target="_blank" v-if="task.file">
-                                <Button size="sm">Faylni ko'rish</Button>
-                            </a>
+                            
                         </TableCell>
                         <TableCell>
                             <a v-if="task.submit" :href="$config.public.base + task.submit" target="_blank">

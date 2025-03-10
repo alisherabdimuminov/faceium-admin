@@ -23,6 +23,7 @@ const { tasks } = storeToRefs(tasksStore);
                         <TableHead>Vazifa</TableHead>
                         <TableHead>Fayl</TableHead>
                         <TableHead>Holati</TableHead>
+                        <TableHead>Harakatlar</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -38,6 +39,19 @@ const { tasks } = storeToRefs(tasksStore);
                             <span class="border rounded font-bold p-1 text-yellow-500 border-yellow-500 bg-yellow-500/10" v-else-if="task.status === 'notsubmitted'">Ko'rilmagan</span>
                             <span class="border rounded font-bold p-1 text-orange-500 border-orange-500 bg-orange-500/10" v-else-if="task.status === 'progress'">Jarayonda</span>
                             <span class="border rounded font-bold p-1 text-red-500 border-red-500 bg-red-500/10" v-else-if="task.status === 'rejected'">Rad etilgan</span>
+                        </TableCell>
+                        <TableCell>
+                            <Dialog>
+                                <DialogTrigger as-child>
+                                    <Button size="sm">Bajarish</Button>
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <DialogHeader>
+                                        <DialogTitle>Vazifani bajarish</DialogTitle>
+                                        <DialogDescription>Vazifa raqami bo'yicha </DialogDescription>
+                                    </DialogHeader>
+                                </DialogContent>
+                            </Dialog>
                         </TableCell>
                     </TableRow>
                 </TableBody>

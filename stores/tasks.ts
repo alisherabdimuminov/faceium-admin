@@ -1,13 +1,13 @@
 import { defineStore } from "pinia";
-import type { ITest, IResponse, ITask } from "~/types";
+import type { ITest, IResponse, IApplication } from "~/types";
 
 export const useTasksStore = defineStore("tasks", {
-    state: (): { tasks: ITask[] } => ({
+    state: (): { tasks: IApplication[] } => ({
         tasks: []
     }),
 
     actions: {
-        set(tasks: ITask[]) {
+        set(tasks: IApplication[]) {
             this.tasks = tasks;
         },
         async get() {
@@ -24,7 +24,7 @@ export const useTasksStore = defineStore("tasks", {
             });
             
             if (response.status === "success") {
-                let decoded = <ITask[]> jsonify(decode(response.data));
+                let decoded = <IApplication[]> jsonify(decode(response.data));
                 if (decoded) {
                     tasksStore.set(decoded);
                 } else {

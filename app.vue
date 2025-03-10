@@ -11,6 +11,7 @@ const { user } = useAuth();
     <Sonner />
     <div>
         <NuxtRouteAnnouncer />
+        <NuxtLoadingIndicator />
         <NuxtLayout>
             <NuxtPage />
         </NuxtLayout>

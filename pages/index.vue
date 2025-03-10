@@ -2,11 +2,15 @@
 
 definePageMeta({
     title: "Bosh sahifa",
-    middleware: ["is-auth", "get-branches", "get-departments", "get-users", "get-working-times",],
+    middleware: ["is-auth", "is-admin", "get-branches", "get-departments", "get-users", "get-working-times",],
 });
 useSeoMeta({
     title: "KPI - Bosh sahifa",
 });
+
+const router = useRouter();
+
+const { user } = useAuth();
 
 
 const branchesStore = useBranchesStore();
@@ -19,6 +23,14 @@ const { departments } = storeToRefs(departmentStore);
 const { users } = storeToRefs(usersStore);
 const { workingTimes } = storeToRefs(workingTimesStore);
 
+
+watch(
+    () => user.value,
+    () => {
+        console.log(user.value);
+        console.log("watched");
+    }
+)
 </script>
 
 <template>

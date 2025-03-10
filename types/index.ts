@@ -102,19 +102,26 @@ export interface ITest {
 }
 
 
-export interface ITask {
+export interface IApplication {
     id: number
-    name: string
     user: IEmployee
-    file: string
+    number: string
+    output_number: IEmployee
+    short_description: string
+    description: string
+    type: string
+    sender: string
     submit: string
+    entered: string
+    exited: string
+    executed: string
     status: "created" | "progress" | "approved" | "rejected" | "notsubmitted"
     created: string
 }
 
 
 export interface ISubmit {
-    task: string
+    application: string
     user: string
     file: string
     created: string
